@@ -3,26 +3,26 @@ require_once 'functions/fns.php';
 
 	db();
 	
-	$author   = mysql_entities_fix_string($_POST['author']);
-	$email    = mysql_entities_fix_string($_POST['email']);
-	$homepage = mysql_entities_fix_string($_POST['homepage']);
-	$comment  = mysql_entities_fix_string($_POST['comment']);
-	$captcha  = mysql_entities_fix_string($_POST['captcha']);
-	$captcha2 = mysql_entities_fix_string($_POST['captcha2']);
+	$user_name   = mysql_entities_fix_string($_POST['user_name']);
+	$email       = mysql_entities_fix_string($_POST['email']);
+	$homepage    = mysql_entities_fix_string($_POST['homepage']);
+	$text        = mysql_entities_fix_string($_POST['text']);
+	$captcha     = mysql_entities_fix_string($_POST['captcha']);
+	$captcha2    = mysql_entities_fix_string($_POST['captcha2']);
 	
-	$ip_author = mysql_entities_fix_string($_SERVER['REMOTE_ADDR']);
-	$browser_author = mysql_entities_fix_string($_SERVER['HTTP_USER_AGENT']);
+	$ip_user_name = mysql_entities_fix_string($_SERVER['REMOTE_ADDR']);
+	$browser_user_name = mysql_entities_fix_string($_SERVER['HTTP_USER_AGENT']);
 	
 	if (isset($_POST['send'])) {
 		
-		if (empty($_POST['author']) && empty($_POST['email']) && empty($_POST['comment']) && empty($_POST['captcha2'])) {
+		if (empty($_POST['user_name']) && empty($_POST['email']) && empty($_POST['text']) && empty($_POST['captcha2'])) {
 			$error = "Вы не заполнили все поля";
-		} elseif (empty($_POST['author'])) {
-			$errorAuthor = "Вы не заполнили поле Автор";
+		} elseif (empty($_POST['user_name'])) {
+			$errorUserName = "Вы не заполнили поле Автор";
 		} elseif (empty($_POST['email'])) {
 			$errorEmail = "Вы не заполнили поле Email";
-		} elseif (empty($_POST['comment'])) {
-			$errorComment = "Вы не заполнили поле Комментария";
+		} elseif (empty($_POST['text'])) {
+			$errorText = "Вы не заполнили поле Комментария";
 		} elseif (empty($_POST['captcha2'])) {
 			$errorCaptcha = "Вы не заполнили поле Символы для проверки";
 		} elseif ($captcha != $captcha2) {
@@ -33,8 +33,8 @@ require_once 'functions/fns.php';
 			if(is_uploaded_file($_FILES['uploadfile']['tmp_name'])) {
 				if ($_FILES['uploadfile']['size'] < $max_image_size) {
 					
-					if (($_FILES['uploadfile']['type'] == "image/gif") ||
-						($_FILES['uploadfile']['type'] == "image/jpeg") || 
+					if (($_FILES['uploadfile']['type'] == "image/jpeg") ||
+						($_FILES['uploadfile']['type'] == "image/gif") || 
 						($_FILES['uploadfile']['type'] == "image/png")) {
 							
 					} else {
@@ -45,18 +45,20 @@ require_once 'functions/fns.php';
 				}
                 if (!$errorType && !$errorSize) {
 					
-                $comment_id = add_comment($author, $email, $homepage, $comment, $ip_author, $browser_author);
+                $comment_id = add_comment($user_name, $email, $homepage, $text, $ip_user_name, $browser_user_name);
                 $uploaddir = './uploadedfiles/';
                 $uploadfilename = time() . $_FILES['uploadfile']['name'];
                 $uploadfile = $uploaddir.basename($uploadfilename);
-                if (copy($_FILES['uploadfile']['tmp_name'], $uploadfile)) {
-                    add_image($uploadfilename, $comment_id);
-                    header("Location: .");
-                }
-            } 
-        } else {
+					
+					if (copy($_FILES['uploadfile']['tmp_name'], $uploadfile)) {
+						
+						add_image($uploadfilename, $comment_id);
+						header("Location: .");
+					}
+				} 
+			} else {
 				
-				add_comment($author, $email, $homepage, $comment, $ip_author, $browser_author);
+				add_comment($user_name, $email, $homepage, $text, $ip_user_name, $browser_user_name);
 				header("Location: .");
 			}
 		}

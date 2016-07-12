@@ -35,10 +35,10 @@ function captcha()
     return $captcha;
 }
 
-function add_comment($author, $email, $homepage, $comment, $ip_author, $browser_author)
+function add_comment($user_name, $email, $homepage, $text, $ip_user_name, $browser_user_name)
 {
     mysql_query("INSERT INTO `comments` (`user_name`, `email`, `homepage`, `text`, `ip_author`, `browser`) 
-				 VALUES ('$author', '$email', '$homepage', '$comment', '$ip_author', '$browser_author')");
+				 VALUES ('$user_name', '$email', '$homepage', '$text', '$ip_user_name', '$browser_user_name')");
     return mysql_insert_id();
 }
 

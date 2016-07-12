@@ -22,11 +22,30 @@
 
             <?php foreach($comments as $item): ?>
                 <div class="comment-answ">
-                    <span class="author_comm"><?= $item['user_name']; ?></span> | <?= $item['text']; ?>
-                    <?php if ($item['uploadfiles_name']){ ?>
-                        <br /><img src="uploadedfiles/<?= $item['uploadfiles_name']; ?>" class="uploadfile" alt="uploadfile" />
-                    <?php } ?><br /><br />
-                    <?= $item['date']; ?>
+					<table>
+						<tr>
+							<td><span class="author_comm">Автор: </span><?= $item['user_name']; ?></td>
+						</tr>
+						<tr>
+							<td><span class="author_comm">E-mail: </span><?= $item['email']; ?></td>
+						</tr>
+						<tr>
+							<td><span class="author_comm">Дата: </span><?= $item['date']; ?></td>
+						</tr>
+						<tr>
+							<td><span class="author_comm">Комментарий:</span></td>
+						</tr>
+						<tr>
+							<td><?= $item['text']; ?></td>
+						</tr>
+						<tr>
+							<td>
+								<?php if ($item['uploadfiles_name']): ?>
+									<br /><img src="uploadedfiles/<?= $item['uploadfiles_name']; ?>" class="uploadfile" alt="uploadfile" />
+								<?php endif; ?><br /><br />
+							</td>
+						</tr>
+					</table>
                 </div>
             <?php endforeach; ?>
          
@@ -36,10 +55,10 @@
         <div class="comment-form">
 		    <div id="errors" class="info"><?= $error; ?></div>
             <form method="POST" enctype="multipart/form-data">
-				<div id="errors" class="info"><?= $errorAuthor; ?></div>
+				<div id="errors" class="info"><?= $errorUserName; ?></div>
                 <label>Ваше имя:</label>
 				<br>
-                <input type="text" name="author" value="<?= $author; ?>" class="text_input" ><!--required-->
+                <input type="text" name="user_name" value="<?= $user_name; ?>" class="text_input" ><!--required-->
 				<br><br>
 				<div id="errors" class="info"><?= $errorEmail; ?></div>
 				<label>E-mail:</label>
@@ -50,10 +69,10 @@
 				<br>
                 <input type="text" name="homepage" value="<?= $homepage; ?>" class="text_input">
 				<br><br>
-				<div id="errors" class="info"><?= $errorComment; ?></div>
+				<div id="errors" class="info"><?= $errorText; ?></div>
                 <label>Оставить отзыв:</label>
 				<br>
-                <textarea name="comment" class="form_textarea"><?= $comment; ?></textarea>
+                <textarea name="text" class="form_textarea"><?= $text; ?></textarea>
 				<br><br>
 				<div id="errors" class="info"><?= $errorCaptcha . $errorCaptcha2; ?></div>
                 <label>Введите символы для проверки:</label>
@@ -68,6 +87,6 @@
             </form>
         </div>
     </div>
-    <script src="js/my_valid.js"></script>
+    <script src="js/valid.js"></script>
     </body>
 </html>

@@ -100,5 +100,7 @@ body {
 .uploadfile {
     border-radius:10px;
     padding:5px;
-    max-width: 100px;
+	
+    max-width:310px;
+    height:auto;
 }
