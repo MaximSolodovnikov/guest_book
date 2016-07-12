@@ -31,19 +31,40 @@ function mysql_fix_string($string)
 
 function captcha()
 {
-    $captcha = rand(100, 999);
+    $captcha = substr(hash('ripemd160', mt_rand(100, 999)), 0, 3);
     return $captcha;
 }
 
-function add_comment($author, $comment)
+function add_comment($author, $email, $homepage, $comment, $ip_author, $browser_author)
 {
-    mysql_query("INSERT INTO `comments` (`author`, `comment`) VALUES ('$author', '$comment')");
+    mysql_query("INSERT INTO `comments` (`user_name`, `email`, `homepage`, `text`, `ip_author`, `browser`) 
+				 VALUES ('$author', '$email', '$homepage', '$comment', '$ip_author', '$browser_author')");
     return mysql_insert_id();
 }
 
+/*function add_comment($author, $email, $homepage, $comment, $ip_author, $browser_author)
+{
+	$query = 'PREPARE statement FROM "INSERT INTO comments VALUES (?, ?, ?, ?, ?, ?)"';
+	mysql_query($query);
+	
+	$query = 'SET @user_name = "$author",' .
+			 '@email = "$email",' .
+			 '@homepage = "$homepage",' .
+			 '@text = "$comment",' .
+			 '@ip_author = "$ip_author",' .
+			 '@browser = "$browser_author"';
+	mysql_query($query);
+	
+	$query = 'EXECUTE statement USING @user_name, @email, @homepage, @text, @ip_author, @browser';
+	mysql_query($query);
+	
+	$query = 'DEALOCATE PREPARE statement';
+	mysql_query($query);
+}*/
+
 function add_image($file_name, $comment_id)
 {
-    mysql_query("INSERT INTO `images` (`image`, `comment_id`) VALUES ('$file_name', '$comment_id')");
+    mysql_query("INSERT INTO `images` (`uploadfiles_name`, `comment_id`) VALUES ('$file_name', '$comment_id')");
 }
 
 function get_comments()
