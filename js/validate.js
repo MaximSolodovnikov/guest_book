@@ -30,7 +30,7 @@ function validateEmail(field) {
 function validateText(field) {
 	
 	if (field == '') return "Не заполнено поле Оставить отзыв.\n";
-	else if (/[\wа-яА-ЯёЁ]+gi/.test(field)) return "В поле Оставить отзыв разрешены только цифры, буквы кириллицы и латинского алфавита.\n";
+	else if (/[\wа-яё]+gi/.test(field)) return "В поле Оставить отзыв разрешены только цифры, буквы кириллицы и латинского алфавита.\n";
 	return '';
 }
 
