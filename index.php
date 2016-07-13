@@ -13,15 +13,15 @@ require_once 'functions/fns.php';
 	
 	if (isset($_POST['send'])) {
 
-		$user_name   = mysql_entities_fix_string($_POST['user_name']);
-		$email       = mysql_entities_fix_string($_POST['email']);
-		$homepage    = mysql_entities_fix_string($_POST['homepage']);
-		$text        = mysql_entities_fix_string($_POST['text']);
-		$captcha     = mysql_entities_fix_string($_POST['captcha']);
-		$captcha2    = mysql_entities_fix_string($_POST['captcha2']);
+		$user_name    = mysql_fix_string($_POST['user_name']);
+		$email        = mysql_fix_string($_POST['email']);
+		$homepage     = mysql_fix_string($_POST['homepage']);
+		$text         = mysql_fix_string($_POST['text']);
+		$captcha      = mysql_fix_string($_POST['captcha']);
+		$captcha2     = mysql_fix_string($_POST['captcha2']);
 		
-		$ip_user_name = mysql_entities_fix_string($_SERVER['REMOTE_ADDR']);
-		$browser_user_name = mysql_entities_fix_string($_SERVER['HTTP_USER_AGENT']);
+		$ip_user_name = mysql_fix_string($_SERVER['REMOTE_ADDR']);
+		$browser_user_name = mysql_fix_string($_SERVER['HTTP_USER_AGENT']);
 
 	
 		if (empty($_POST['user_name']) && empty($_POST['email']) && empty($_POST['text']) && empty($_POST['captcha2'])) {

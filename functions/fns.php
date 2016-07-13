@@ -16,10 +16,10 @@ function db()
 
 /* >> function to prevent injection attacks of XSS and SQL*/
 
-function mysql_entities_fix_string($string)
+/*function mysql_entities_fix_string($string)
 {
 	return htmlentities(mysql_fix_string($string));
-}
+}*/
 
 function mysql_fix_string($string)
 {
