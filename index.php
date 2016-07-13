@@ -27,11 +27,11 @@ require_once 'functions/fns.php';
 		if (empty($_POST['user_name']) && empty($_POST['email']) && empty($_POST['text']) && empty($_POST['captcha2'])) {
 			$error = "Вы не заполнили все поля";
 		} elseif (empty($_POST['user_name'])) {
-			$errorUserName = "Вы не заполнили поле Автор";
+			$errorUserName = "Вы не заполнили поле Ваше имя";
 		} elseif (empty($_POST['email'])) {
 			$errorEmail = "Вы не заполнили поле Email";
 		} elseif (empty($_POST['text'])) {
-			$errorText = "Вы не заполнили поле Комментария";
+			$errorText = "Вы не заполнили поле Оставить отзыв";
 		} elseif (empty($_POST['captcha2'])) {
 			$errorCaptcha = "Вы не заполнили поле Символы для проверки";
 		} elseif ($captcha != $captcha2) {
