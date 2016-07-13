@@ -53,7 +53,7 @@
 <?php /*<------------------------- Output comments */ ?>
 
         <div class="comment-form">
-		    <div id="errors" class="info"><?= $error; ?></div>
+		    <div id="errors" class="info"><?php echo $error; ?></div>
             <form method="POST" enctype="multipart/form-data">
 				<div id="errors" class="info"><?= $errorUserName; ?></div>
                 <label>Ваше имя:</label>

@@ -71,6 +71,7 @@ function get_comments()
 {
     $sel = "SELECT * FROM `comments` LEFT JOIN `images` ON comments.id = images.comment_id ORDER BY comments.id DESC";
     $res = mysql_query($sel);
+	$comments = '';
     while($row = mysql_fetch_array($res)) {
             $comments[] = $row;
         }
