@@ -57,34 +57,34 @@
             <form method="POST" enctype="multipart/form-data" onSubmit="return validate(this)">
 				<div id="errors" class="info"><?= $errorUserName; ?></div>
                 <label>*Ваше имя:</label>
-				<br>
-                <input type="text" name="user_name" value="<?= $user_name; ?>" class="text_input" maxlength="32"><!--required-->
-				<br><br>
+				<br />
+                <input type="text" name="user_name" value="<?= $user_name; ?>" class="text_input" maxlength="32" required />
+				<br /><br />
 				<div id="errors" class="info"><?= $errorEmail; ?></div>
 				<label>*E-mail:</label>
-				<br>
-                <input type="text" name="email" value="<?= $email; ?>" class="text_input" maxlength="40"><!--required-->
-				<br><br>
+				<br />
+                <input type="text" name="email" value="<?= $email; ?>" class="text_input" maxlength="40" required />
+				<br /><br />
 				<label>Homepage (необязательное поле):</label>
-				<br>
-                <input type="text" name="homepage" value="<?= $homepage; ?>" class="text_input" maxlength="32">
-				<br><br>
+				<br />
+                <input type="text" name="homepage" value="<?= $homepage; ?>" class="text_input" maxlength="32" />
+				<br /><br />
 				<div id="errors" class="info"><?= $errorText; ?></div>
                 <label>*Оставить отзыв:</label>
-				<br>
+				<br />
                 <textarea name="text" class="form_textarea"><?= $text; ?></textarea>
-				<br><br>
+				<br /><br />
 				<div id="errors" class="info"><?= $errorCaptcha . $errorCaptcha2; ?></div>
                 <label>*Введите символы для проверки:</label>
-				<br>
-                <input name="captcha" value="<?= captcha(); ?>" readonly="readonly" size="2" class="captcha">
+				<br />
+                <input name="captcha" value="<?= captcha(); ?>" readonly="readonly" size="2" class="captcha" />
                 <input name="captcha2" value="" size="2" maxlength="3" class="captcha2" />
-				<br><br>
+				<br /><br />
 				<div id="errors" class="info"><?= $errorType . $errorSize; ?></div>
                 <input type="file" name="uploadfile" />
-				<br><br>
+				<br /><br />
                 <input type="submit" name="send" value="Отправить" class="button">
-				<br><br>
+				<br /><br />
 				* - поля обязательные для заполнения
             </form>
         </div>
